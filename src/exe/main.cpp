@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 
+#include <boost/filesystem.hpp>
+
 #include <sprintor/interop/process.h>
 
 using namespace sprintor::interop::process;
@@ -29,9 +31,21 @@ int main(int argc, char *argv[]) {
 #endif
 
   const auto &exe_binary = load_all_bytes(exe_path);
+
   const auto &hm =
       memexec("test", (void *)exe_binary.data(), exe_binary.size(), nullptr);
   release_hmodule(hm);
+
+  // std::vector<std::string> output;
+  // std::vector<std::string> args{"/c", "\"echo 123\""};
+  // const auto &r = execute_command(
+  //     exe_binary, args, "", output);
+
+  // for (const auto &line : output) {
+  //   std::cout << line << std::endl;
+  // }
+
+  system("pause");
 
   return 0;
 }

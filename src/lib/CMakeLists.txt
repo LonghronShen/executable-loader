@@ -26,6 +26,7 @@ add_library(${project_name}-lib
 target_link_libraries(${project_name}-lib
     PUBLIC ${CMAKE_THREAD_LIBS_INIT}
     PUBLIC ${DL_LIBRARY}
+    PUBLIC ${Boost_LIBRARIES}
     PUBLIC utf8cpp
     PUBLIC crossguid
 )
