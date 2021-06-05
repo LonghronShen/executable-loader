@@ -12,6 +12,7 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <cstring>
 #include <iomanip>
 #include <iterator>
 #include <sstream>
