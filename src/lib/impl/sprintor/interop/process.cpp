@@ -1,15 +1,3 @@
-#if defined(_MSC_VER) || (defined(__BORLANDC__) && __BORLANDC__ >= 0x0650) ||  \
-    (defined(__COMO__) && __COMO_VERSION__ >= 400) /* ??? */                   \
-    || (defined(__DMC__) && __DMC__ >= 0x700)      /* ??? */                   \
-    || (defined(__clang__) && __clang_major__ >= 3) ||                         \
-    (defined(__GNUC__) &&                                                      \
-     (__GNUC__ >= 4 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4)))
-#pragma once
-#endif
-
-#ifndef B76F1749_80F0_43D5_9900_87733A322CEA
-#define B76F1749_80F0_43D5_9900_87733A322CEA
-
 #include <cstring>
 #include <string>
 #include <vector>
@@ -75,5 +63,3 @@ std::vector<std::string> extract_from_argv(const char **argv) {
 } // namespace process
 } // namespace interop
 } // namespace sprintor
-
-#endif /* B76F1749_80F0_43D5_9900_87733A322CEA */
