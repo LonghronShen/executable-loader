@@ -12,6 +12,7 @@
 #include <sprintor/utils/string.h>
 
 namespace bp = boost::process;
+namespace bfs = boost::filesystem;
 using namespace sprintor::utils::string;
 
 namespace sprintor {
@@ -26,12 +27,15 @@ struct process_result {
 
 inline std::string
 write_all_bytes_to_temp_file(const std::vector<char> &binary) {
-  boost::filesystem::path tempPath = boost::filesystem::temp_directory_path() /
-                                     boost::filesystem::unique_path();
+  bfs::path tempPath = bfs::temp_directory_path() / bfs::unique_path();
   const auto &tempPathStr = tempPath.string();
   std::ofstream fs(tempPathStr, std::ios_base::binary);
   fs.write(binary.data(), binary.size());
   fs.close();
+  bfs::permissions(tempPath, bfs::add_perms | bfs::owner_write |
+                                 bfs::group_write | bfs::others_write |
+                                 bfs::group_exe | bfs::owner_exe |
+                                 bfs::others_exe);
   return tempPathStr;
 }
 
@@ -82,7 +86,7 @@ std::int64_t execute_command(const std::vector<char> exe_binary,
   work.reset();
   io_thread.join();
 
-  boost::filesystem::remove(path);
+  bfs::remove(path);
 
   return pstree.exit_code;
 }

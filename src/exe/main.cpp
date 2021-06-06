@@ -32,20 +32,20 @@ int main(int argc, char *argv[]) {
 
   const auto &exe_binary = load_all_bytes(exe_path);
 
-  const auto &hm =
-      memexec("test", (void *)exe_binary.data(), exe_binary.size(), nullptr);
-  release_hmodule(hm);
+  // const auto &hm =
+  //     memexec("test", (void *)exe_binary.data(), exe_binary.size(), nullptr);
+  // release_hmodule(hm);
 
-  // std::vector<std::string> output;
-  // std::vector<std::string> args{"/c", "\"echo 123\""};
-  // const auto &r = execute_command(
-  //     exe_binary, args, "", output);
+  std::vector<std::string> output;
+  std::vector<std::string> args{};
+  const auto &r = execute_command(
+      exe_binary, args, boost::filesystem::current_path().string(), output);
 
-  // for (const auto &line : output) {
-  //   std::cout << line << std::endl;
-  // }
+  for (const auto &line : output) {
+    std::cout << line << std::endl;
+  }
 
-  system("pause");
+  // system("pause");
 
   return 0;
 }

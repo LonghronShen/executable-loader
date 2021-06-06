@@ -24,7 +24,7 @@ if(WIN32)
     set(Boost_USE_STATIC_RUNTIME ON CACHE STRING "Boost_USE_STATIC_RUNTIME" FORCE)
 endif()
 
-find_package(Boost 1.65.1 REQUIRED COMPONENTS thread log log_setup system program_options filesystem coroutine locale regex unit_test_framework)
+find_package(Boost 1.66 REQUIRED COMPONENTS thread log log_setup system program_options filesystem coroutine locale regex unit_test_framework)
 if(Boost_FOUND)
     message(STATUS "** Boost Include: ${Boost_INCLUDE_DIR}")
     message(STATUS "** Boost Libraries Directory: ${Boost_LIBRARY_DIRS}")
