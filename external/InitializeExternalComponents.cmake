@@ -8,15 +8,18 @@ include(FetchContent)
 
 # googletest
 option(EXECUTABLE_LOADER_BUILD_GTEST "Build Gtest for EXECUTABLE_LOADER_BUILD_GTEST." ON)
-FetchContent_Declare(googletest
-  GIT_REPOSITORY https://github.com/google/googletest
-  GIT_TAG release-1.10.0)
+message(STATUS "EXECUTABLE_LOADER_BUILD_GTEST:${EXECUTABLE_LOADER_BUILD_GTEST}")
+if(EXECUTABLE_LOADER_BUILD_GTEST)
+    FetchContent_Declare(googletest
+        GIT_REPOSITORY https://github.com/google/googletest
+        GIT_TAG release-1.10.0)
 
-FetchContent_GetProperties(googletest)
-if(NOT googletest_POPULATED)
-  FetchContent_Populate(googletest)
-  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR} EXCLUDE_FROM_ALL)
-  include(GoogleTest)
+    FetchContent_GetProperties(googletest)
+    if(NOT googletest_POPULATED)
+        FetchContent_Populate(googletest)
+        add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR} EXCLUDE_FROM_ALL)
+        include(GoogleTest)
+    endif()
 endif()
 
 # boost-cmake
