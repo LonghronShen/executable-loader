@@ -71,4 +71,7 @@ include_directories(BEFORE SYSTEM "${CMAKE_CURRENT_LIST_DIR}/include/")
 include(external/InitializeExternalComponents.cmake)
 
 add_subdirectory(src)
-add_subdirectory(test)
+
+if(EXECUTABLE_LOADER_BUILD_GTEST)
+    add_subdirectory(test)
+endif()
