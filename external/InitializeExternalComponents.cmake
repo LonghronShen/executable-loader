@@ -7,6 +7,7 @@ endif()
 include(FetchContent)
 
 # googletest
+option(EXECUTABLE_LOADER_BUILD_GTEST "Build Gtest for EXECUTABLE_LOADER_BUILD_GTEST." ON)
 FetchContent_Declare(googletest
   GIT_REPOSITORY https://github.com/google/googletest
   GIT_TAG release-1.10.0)
