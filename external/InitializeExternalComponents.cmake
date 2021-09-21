@@ -74,10 +74,11 @@ endif()
 
 # crossguid
 set(XG_TESTS OFF CACHE BOOL "XG_TESTS" FORCE)
+set(CROSS_GUID_WARNINGS "" CACHE BOOL "CROSS_GUID_WARNINGS" FORCE)
 
 FetchContent_Declare(crossguid
-  GIT_REPOSITORY https://github.com/graeme-hill/crossguid.git
-  GIT_TAG ca1bf4b810e2d188d04cb6286f957008ee1b7681)
+  GIT_REPOSITORY https://github.com/LonghronShen/crossguid.git
+  GIT_TAG master)
 
 FetchContent_GetProperties(crossguid)
 if(NOT crossguid_POPULATED)
