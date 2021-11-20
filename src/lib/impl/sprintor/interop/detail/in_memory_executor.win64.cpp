@@ -191,7 +191,7 @@ std::int64_t memexec(const std::string &file_name, void *exe,
 
 std::int64_t memexec(const std::string &file_name, void *exe,
                      std::size_t exe_size, int argc, char **argv) {
-  const auto &args = extract_from_argv(argv);
+  const auto &args = extract_from_argv((const char **)argv);
   return memexec(file_name, exe, exe_size, args);
 }
 
