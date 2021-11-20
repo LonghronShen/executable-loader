@@ -33,6 +33,6 @@ target_link_libraries(${project_name}-lib
 
 target_include_directories(${project_name}-lib
     PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include/public"
-    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include/private"
+    PRIVATE "${CMAKE_CURRENT_LIST_DIR}/include/private"
     PUBLIC "${CMAKE_CURRENT_BINARY_DIR}/include"
 )

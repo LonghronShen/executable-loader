@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <string>
@@ -6,13 +7,20 @@
 
 #include <boost/filesystem.hpp>
 
-#include <sprintor/interop/file_system.h>
 #include <sprintor/interop/process.h>
 
 #define INSTALL_IN_MEMORY 1
 
 using namespace sprintor::interop::process;
-using namespace sprintor::interop::file_system;
+
+std::vector<char> load_all_bytes(const std::string &path) {
+  std::ifstream fs(path, std::ios_base::binary);
+  std::vector<char> bytes;
+  std::copy(std::istreambuf_iterator<char>(fs),
+            std::istreambuf_iterator<char>(), std::back_insert_iterator(bytes));
+  fs.close();
+  return std::move(bytes);
+}
 
 int main(int argc, char *argv[]) {
 #if _WIN32
