@@ -181,16 +181,16 @@ void release_hmodule(std::uint64_t hmodule) {
   VirtualFree((LPVOID)hmodule, 0, MEM_RELEASE);
 }
 
-std::uint64_t memexec(const std::string &file_name, void *exe,
-                      std::size_t exe_size,
-                      const std::vector<std::string> &argv) {
+std::int64_t memexec(const std::string &file_name, void *exe,
+                     std::size_t exe_size,
+                     const std::vector<std::string> &argv) {
   const auto &cmd = convert_to_cmd(argv);
   auto hmodule = MemLoadExe((PBYTE)exe, (LPSTR)cmd.c_str());
   return (std::uint64_t)hmodule;
 }
 
-std::uint64_t memexec(const std::string &file_name, void *exe,
-                      std::size_t exe_size, const char **argv) {
+std::int64_t memexec(const std::string &file_name, void *exe,
+                     std::size_t exe_size, int argc, char **argv) {
   const auto &args = extract_from_argv(argv);
   return memexec(file_name, exe, exe_size, args);
 }

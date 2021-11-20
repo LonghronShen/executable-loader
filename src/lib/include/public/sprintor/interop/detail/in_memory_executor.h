@@ -18,12 +18,16 @@ namespace sprintor {
 namespace interop {
 namespace process {
 
-std::uint64_t memexec(const std::string &file_name, void *exe,
-                      std::size_t exe_size, const char **argv);
+std::int64_t memexec(const std::string &file_name, void *exe,
+                     std::size_t exe_size, int argc, char **argv);
 
-std::uint64_t memexec(const std::string &file_name, void *exe,
-                      std::size_t exe_size,
-                      const std::vector<std::string> &argv);
+std::int64_t memexec(const std::string &file_name, void *exe,
+                     std::size_t exe_size,
+                     const std::vector<std::string> &argv);
+
+std::int64_t memexec(const std::string &file_name,
+                     const std::vector<char> bin_buffer,
+                     const std::vector<std::string> &argv);
 
 } // namespace process
 } // namespace interop

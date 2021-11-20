@@ -17,8 +17,8 @@ namespace process {
 
 void release_hmodule(std::uint64_t hmodule) { return; }
 
-std::uint64_t memexec(const std::string &file_name, void *exe,
-                      std::size_t exe_size, const char **argv) {
+std::int64_t memexec(const std::string &file_name, void *exe,
+                     std::size_t exe_size, int argc, char **argv) {
   /* random temporary file name in /tmp */
   const auto &path = "/tmp/" + file_name;
   char *name = (char *)path.c_str();
@@ -45,15 +45,16 @@ std::uint64_t memexec(const std::string &file_name, void *exe,
   return 0;
 }
 
-std::uint64_t memexec(const std::string &file_name, void *exe,
-                      std::size_t exe_size,
-                      const std::vector<std::string> &argv) {
+std::int64_t memexec(const std::string &file_name, void *exe,
+                     std::size_t exe_size,
+                     const std::vector<std::string> &argv) {
   char **args_array;
   int argc;
   if (convert_to_argv(argv, &args_array, &argc)) {
-    auto hmodule = memexec(file_name, exe, exe_size, (const char **)args_array);
+    auto hmodule =
+        memexec(file_name, exe, exe_size, argc, (const char **)args_array);
     free_buffer(&args_array, argc);
-    return (std::uint64_t)hmodule;
+    return (std::int64_t)hmodule;
   }
   return -1;
 }
