@@ -51,8 +51,8 @@ std::int64_t memexec(const std::string &file_name, void *exe,
   char **args_array;
   int argc;
   if (convert_to_argv(argv, &args_array, &argc)) {
-    auto hmodule =
-        memexec(file_name, exe, exe_size, argc, (const char **)args_array);
+    auto hmodule = memexec(file_name, exe, exe_size, argc,
+                           const_cast<char **>(args_array));
     free_buffer(&args_array, argc);
     return (std::int64_t)hmodule;
   }

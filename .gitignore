@@ -42,6 +42,8 @@ cmake-build-debug/
 
 .vscode/
 .cache/
-.vs
+.vs/
+.ionide/
 
 .ci_env*
+.DS_Store
